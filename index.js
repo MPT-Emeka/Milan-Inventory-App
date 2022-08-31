@@ -4,8 +4,7 @@ const app = express()
 const storeOwner = require("./model")
 const dotenv = require("dotenv");
 
-const Database = "mongodb+srv://milan:milan@cluster0.vytpmly.mongodb.net/milanDB?retryWrites=true&w=majority"
-
+// const Database = insert connection string
 const PORT = 4000 // can be any 4 digit number. 
 
 app.use(express.json());
