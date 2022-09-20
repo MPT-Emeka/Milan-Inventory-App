@@ -1,0 +1,17 @@
+{
+  "name": "milan-inventory-app",
+  "version": "1.0.0",
+  "description": "An app for Milan tribe",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Milan tribe",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.4",
+    "nodemon": "^2.0.20"
+  }
+}
