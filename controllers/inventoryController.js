@@ -4,15 +4,15 @@ const express = require("express");
 exports.createinventory = async (request, response) => {
     const {id} = request.headers
     const findinventory = await inventory.findById(id)
-    const  {dateOfEntry, description, stockQuantity, batchNo} = request.body
+    const {dateOfEntry, description, stockQuantity, batchNo} = request.body
     if (findinventory){
     const createNewinventory = new inventory({dateOfEntry, description, stockQuantity, batchNo});
         console.log({dateOfEntry, description, stockQuantity, batchNo})
-    await blog.save();
+    await createNewinventory.save();
       return response.status(201).send({
         status: true,
-        message: "Blog has been succesfully posted",
-        newBlog: blog
+        message: "inventory has been succesfully posted",
+        newInventory: createNewinventory
       })
     }else {
         return response.status(401).send({
