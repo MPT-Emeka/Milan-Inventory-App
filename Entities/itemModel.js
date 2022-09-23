@@ -27,6 +27,10 @@ const itemSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    serialNo: {
+        type: String,
+        required: true
+    },
     batchNo: {
         type: String,
         required: true

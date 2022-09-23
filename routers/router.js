@@ -1,18 +1,22 @@
 const express = require("express");
-const storeOwnerController = require("./controllers/storeOwnerController")
-const inventoryController = require("./controllers/inventoryController")
+const storeOwnerController = require("../controllers/storeOwnerController")
+const inventoryController = require("../controllers/inventoryController")
+const itemController = require("../controllers/itemController")
 const app = express();
 app.use(express.json());
 const router = express.Router()
 
-const {createinventory, getinventory, deleteinventory} = inventoryController 
-router.route("/inventory").post(createinventory).get(getinventory).delete(deleteinventory)
+const {createItem, getItem, deleteItem} = itemController
+router.route("/item").post(createItem).get(getItem).delete(deleteItem)
 
-const {createstoreOwner, getstoreOwners, updateStoreOwner, deletestoreOwner} = storeOwnerController 
-router.route("/storeOwner").post(createstoreOwner).get(getstoreOwners).put(updateStoreOwner).delete(deletestoreOwner)
+const {createInventory, getInventory} = inventoryController 
+router.route("/inventory").post(createInventory).get(getInventory) 
+
+const {createStoreOwner, getStoreOwners, updateStoreOwner, deleteStoreOwner} = storeOwnerController 
+router.route("/storeOwner").post(createStoreOwner).get(getStoreOwners).put(updateStoreOwner).delete(deleteStoreOwner)
 
 const{storeOwnerLogin} = storeOwnerController
-router.route("/storeOwner/:id").post(storeOwnerLogin)
+router.route("/storeOwner/login").post(storeOwnerLogin)
 
 module.exports = router
 
