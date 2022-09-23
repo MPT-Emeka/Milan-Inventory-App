@@ -21,13 +21,13 @@ exports.createStoreOwner = async (request, response) => {
     }catch (error) {
       return response.status(404).send({
           status: false,
-          message: "invalid email"
+          message: "invalid email or password"
       })   
     }
 }
 
 exports.updateStoreOwner = async (request, response) => {
-    const findstoreOwner = await storeOwner.findById(request.body.Id);
+    const findstoreOwner = await storeOwner.findById(request.body.id);
      findstoreOwner.email = request.body.email
      findstoreOwner.password = request.body.password
      await findstoreOwner.save()
@@ -40,9 +40,12 @@ exports.updateStoreOwner = async (request, response) => {
 
 exports.storeOwnerLogin = async (request, response) => 
 {
-    const id = request.params.id;
-    const findStoreOwner = storeOwner.findById(id)
-    if (findStoreOwner){
+    const requestBody = request.body
+    console.log(requestBody)
+    const findStoreOwner = storeOwner.findOne({ email: requestBody.email })
+    console.log(findStoreOwner) 
+    if (findStoreOwner && findStoreOwner.email === requestBody.email && 
+        findStoreOwner.password === requestBody.password){
        return response.status(200).send({
             status: true,
             message: "Successful login",
@@ -55,7 +58,7 @@ exports.storeOwnerLogin = async (request, response) =>
     }
 }
 
-exports.getstoreOwners = async (request, response) => {
+exports.getStoreOwners = async (request, response) => {
     const findAllstoreOwners = await storeOwner.find();
     return response.status(200).send({
       status: true,
@@ -64,7 +67,7 @@ exports.getstoreOwners = async (request, response) => {
     });
 }
 
-exports.deletestoreOwner = async (request, response) => {
+exports.deleteStoreOwner = async (request, response) => {
     const {id} = request.query
     console.log(id)
     const findstoreOwner = await User.findByIdAndDelete(id);
